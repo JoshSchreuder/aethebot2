@@ -1,4 +1,6 @@
 using Aethebot.Worker;
+using Aethebot.Worker.Commands;
+using Discord.Commands;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +22,7 @@ namespace Aethebot.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            if (string.IsNullOrWhiteSpace(Configuration.GetValue<string>("DISCORD_TOKEN", string.Empty)))
+            if (string.IsNullOrWhiteSpace(Configuration.GetValue("DISCORD_TOKEN", string.Empty)))
             {
                 throw new InvalidOperationException("Missing DISCORD_TOKEN! Did you forget to read the README?");
             }
@@ -34,6 +36,11 @@ namespace Aethebot.Web
             {
                 services.AddHostedService<WorkerService>();
             }
+
+            services.AddSingleton(new PingModule());
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            services.AddSingleton(new CommandService());
+#pragma warning restore CA2000 // Dispose objects before losing scope
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
