@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aethebot2", "Aethebot2\Aethebot2.csproj", "{8669BDC4-CF57-478E-97C6-C8FCB98C757A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aethebot.Web", "Aethebot.Web\Aethebot.Web.csproj", "{A94EA573-AB44-478A-A5D3-CAC09DF428C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aethebot.Worker", "Aethebot.Worker\Aethebot.Worker.csproj", "{16403AC3-102F-4E9E-A356-A9D860EE13B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8669BDC4-CF57-478E-97C6-C8FCB98C757A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8669BDC4-CF57-478E-97C6-C8FCB98C757A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8669BDC4-CF57-478E-97C6-C8FCB98C757A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8669BDC4-CF57-478E-97C6-C8FCB98C757A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94EA573-AB44-478A-A5D3-CAC09DF428C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94EA573-AB44-478A-A5D3-CAC09DF428C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94EA573-AB44-478A-A5D3-CAC09DF428C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94EA573-AB44-478A-A5D3-CAC09DF428C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16403AC3-102F-4E9E-A356-A9D860EE13B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16403AC3-102F-4E9E-A356-A9D860EE13B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16403AC3-102F-4E9E-A356-A9D860EE13B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16403AC3-102F-4E9E-A356-A9D860EE13B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
