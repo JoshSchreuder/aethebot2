@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -65,19 +67,36 @@ namespace Aethebot.Worker
             int argPos = 0;
 
             // Determine if the message is a command based on the prefix and make sure no bots trigger commands
-            if (!(message.Content.Contains("v.redd.it", StringComparison.InvariantCultureIgnoreCase) || message.HasMentionPrefix(_client.CurrentUser, ref argPos) || message.Channel is SocketDMChannel) || message.Author.IsBot)
+            if (message.Content.Contains("v.redd.it", StringComparison.InvariantCultureIgnoreCase))
+            {
+                await commandService.Commands
+                    .FirstOrDefault(x => x.Name == "vreddit")
+                    .ExecuteAsync(new SocketCommandContext(_client, message), ParseResult.FromSuccess(new List<TypeReaderValue>() { new TypeReaderValue(message.Content, 1) }, new List<TypeReaderValue>()), services);
+                return;
+            }
+            else if (message.HasMentionPrefix(_client.CurrentUser, ref argPos) || message.Channel is SocketDMChannel)
+            {
+                _logger.LogInformation("Command is valid, processing...");
+            }
+            else if (message.Author.IsBot)
             {
                 _logger.LogInformation("Command was triggered by a bot, ignoring.");
+                return;
+            }
+            else
+            {
+                _logger.LogInformation("Unknown command type, ignoring.");
                 return;
             }
 
             // Execute the command with the command context we just
             // created, along with the service provider for precondition checks.
             _logger.LogInformation("Executing command!");
-            await commandService.ExecuteAsync(
+            var result = await commandService.ExecuteAsync(
                 context: new SocketCommandContext(_client, message),
                 argPos: argPos,
                 services: services);
+            _logger.LogInformation($"Success: {result.IsSuccess} - {result.ErrorReason}");
         }
 
         private Task Stop()

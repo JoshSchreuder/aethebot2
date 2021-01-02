@@ -37,6 +37,8 @@ namespace Aethebot.Web
                 services.AddHostedService<WorkerService>();
             }
 
+            services.AddHttpClient("reddit");
+
             services.AddSingleton(new PingModule());
 #pragma warning disable CA2000 // Dispose objects before losing scope
             services.AddSingleton(new CommandService());
