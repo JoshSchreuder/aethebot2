@@ -65,7 +65,7 @@ namespace Aethebot.Worker
             int argPos = 0;
 
             // Determine if the message is a command based on the prefix and make sure no bots trigger commands
-            if (!(message.HasCharPrefix('!', ref argPos) || message.HasMentionPrefix(_client.CurrentUser, ref argPos)) || message.Author.IsBot)
+            if (!(message.Content.Contains("v.redd.it", StringComparison.InvariantCultureIgnoreCase) || message.HasMentionPrefix(_client.CurrentUser, ref argPos) || message.Channel is SocketDMChannel) || message.Author.IsBot)
             {
                 _logger.LogInformation("Command was triggered by a bot, ignoring.");
                 return;

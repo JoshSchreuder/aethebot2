@@ -27,6 +27,7 @@ namespace Aethebot.Worker.Commands
 
         [Command("dril me")]
         [Alias("drilme", ":dril:")]
+        [Summary("Return a random lewd twit")]
         public Task DrilMe()
         {
             var twit = _twits[_order.Dequeue()];
@@ -38,23 +39,18 @@ namespace Aethebot.Worker.Commands
             return ReplyAsync(message: Context.User.Mention, embed: EmbedTemplates.Dril.Get(twit).Build());
         }
 
-        /// <summary>
-        /// show yourself coward
-        /// </summary>
-        /// <returns></returns>
         [Command("log off")]
         [Alias("logoff")]
+        [Summary("show yourself coward")]
+
         public Task LogOff()
         {
             return ReplyAsync(message: Context.User.Mention, embed: EmbedTemplates.Dril.Get(EmbedTemplates.Dril.LOGOFF).Build());
         }
 
-        /// <summary>
-        /// ...th-that's lewd
-        /// </summary>
-        /// <returns></returns>
         [Command("drill me")]
         [Alias("drillme")]
+        [Summary("...th-that's lewd")]
         public Task DrillMe()
         {
             return ReplyAsync(message: Context.User.Mention, embed: EmbedTemplates.Dril.Get(EmbedTemplates.Dril.NO).Build());
