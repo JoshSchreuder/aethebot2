@@ -1,0 +1,90 @@
+##########################################
+# Common Settings
+##########################################
+
+# This file is the top-most EditorConfig file
+root = true
+
+# All Files
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+##########################################
+# File Extension Settings
+##########################################
+
+# Visual Studio Solution Files
+[*.sln]
+indent_style = tab
+
+# Visual Studio XML Project Files
+[*.{csproj,vbproj,vcxproj.filters,proj,projitems,shproj}]
+indent_size = 2
+
+# XML Configuration Files
+[*.{xml,config,props,targets,nuspec,resx,ruleset,vsixmanifest,vsct}]
+indent_size = 2
+
+# JSON Files
+[*.{json,json5,webmanifest}]
+indent_size = 2
+
+# YAML Files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown Files
+[*.md]
+trim_trailing_whitespace = false
+
+# Web Files
+[*.{htm,html,js,jsm,ts,tsx,css,sass,scss,less,svg,vue}]
+indent_size = 2
+
+# Batch Files
+[*.{cmd,bat}]
+end_of_line = crlf
+
+# Bash Files
+[*.sh]
+end_of_line = lf
+
+# Makefiles
+[Makefile]
+indent_style = tab
+
+##########################################
+# Analyser Warnings
+##########################################
+
+[*.cs]
+
+# https://docs.microsoft.com/en-us/visualstudio/code-quality/ca1062?view=vs-2019
+# justification: TODO: we should handle this with nullable reference types at a later date
+dotnet_diagnostic.CA1062.severity = suggestion
+
+# https://docs.microsoft.com/en-us/visualstudio/code-quality/ca1303?view=vs-2019
+# justification: busywork. do not need to localise everything.
+dotnet_diagnostic.CA1303.severity = suggestion
+
+# https://docs.microsoft.com/en-us/visualstudio/code-quality/CA1724?view=vs-2019
+# justification: not a shipping library, no one cares if we conflict with namespaces
+dotnet_diagnostic.CA1724.severity = suggestion
+
+# https://docs.microsoft.com/en-us/visualstudio/code-quality/ca2007?view=vs-2019
+# justification: not a GUI app
+dotnet_diagnostic.CA2007.severity = silent
+
+# Use "Async" suffix in names of methods that return an awaitable type
+# justification: not too fussed about method names
+dotnet_diagnostic.VSTHRD200.severity = suggestion
+
+dotnet_diagnostic.CA9998.severity = suggestion
+
+dotnet_diagnostic.CA1054.severity = suggestion
+
+dotnet_diagnostic.CA5394.severity = suggestion

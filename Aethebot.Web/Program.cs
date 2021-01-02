@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System;
 
+[assembly: CLSCompliant(false)]
 namespace Aethebot.Web
 {
     public static class Program
