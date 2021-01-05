@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace Aethebot.Worker.EmbedTemplates
 {
-    public class Dril : Twitter
+    public class DrilEmbed : TwitterEmbed
     {
         private const string DEFAULT_URL = "https://twitter.com/dril";
 

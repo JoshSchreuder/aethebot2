@@ -1,3 +1,4 @@
+using Aethebot.Worker.EmbedTemplates;
 using Aethebot.Worker.Model;
 using Aethebot.Worker.Resources.twits;
 using Discord.Commands;
@@ -19,7 +20,7 @@ namespace Aethebot.Worker.Commands
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             _twits = JsonSerializer.Deserialize<List<Twit>>(Twits.dril_nasa, opts)
                 .Concat(JsonSerializer.Deserialize<List<Twit>>(Twits.dril, opts))
-                .Concat(new List<Twit> { EmbedTemplates.Dril.LOGOFF, EmbedTemplates.Dril.NO })
+                .Concat(new List<Twit> { DrilEmbed.LOGOFF, DrilEmbed.NO })
                 .ToList();
 
             QueueUp();
@@ -36,7 +37,7 @@ namespace Aethebot.Worker.Commands
                 QueueUp();
             }
 
-            return ReplyAsync(message: Context.User.Mention, embed: EmbedTemplates.Dril.Get(twit).Build());
+            return ReplyAsync(message: Context.User.Mention, embed: DrilEmbed.Get(twit).Build());
         }
 
         [Command("log off")]
@@ -45,7 +46,7 @@ namespace Aethebot.Worker.Commands
 
         public Task LogOff()
         {
-            return ReplyAsync(message: Context.User.Mention, embed: EmbedTemplates.Dril.Get(EmbedTemplates.Dril.LOGOFF).Build());
+            return ReplyAsync(message: Context.User.Mention, embed: DrilEmbed.Get(DrilEmbed.LOGOFF).Build());
         }
 
         [Command("drill me")]
@@ -53,7 +54,7 @@ namespace Aethebot.Worker.Commands
         [Summary("...th-that's lewd")]
         public Task DrillMe()
         {
-            return ReplyAsync(message: Context.User.Mention, embed: EmbedTemplates.Dril.Get(EmbedTemplates.Dril.NO).Build());
+            return ReplyAsync(message: Context.User.Mention, embed: DrilEmbed.Get(DrilEmbed.NO).Build());
         }
 
         private void QueueUp()

@@ -3,7 +3,7 @@ using System;
 
 namespace Aethebot.Worker.EmbedTemplates
 {
-    public abstract class Twitter
+    public abstract class TwitterEmbed
     {
         public static Func<EmbedBuilder> BUILDER { get; } = () => new EmbedBuilder
         {
