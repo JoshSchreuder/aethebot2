@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    @{
+        using (Html.BeginForm("Say", "Home", FormMethod.Post))
+        {
+            <label class="form-control">Channel</label>
+            @Html.DropDownList("ChannelName", (IEnumerable<SelectListItem>)ViewBag.Channels)
+
+            <label class="form-control">Say something</label>
+            @Html.TextBox("TextToSay")
+
+            <input class="form-control" type="submit" value="Say" />
+        }
+    }
+</div>

@@ -17,7 +17,7 @@ namespace Aethebot.Worker
     public class WorkerService : BackgroundService
     {
         private string _discordToken;
-        private DiscordSocketClient _client;
+        private static DiscordSocketClient _client;
         private readonly ILogger<WorkerService> _logger;
         private readonly IServiceProvider services;
         private readonly CommandService commandService;
@@ -33,6 +33,19 @@ namespace Aethebot.Worker
             _client = new DiscordSocketClient();
             this.services = services;
             this.commandService = commandService;
+        }
+
+        public static async Task Announce(string channelName, string text)
+        {
+            foreach (var channel in _client.Guilds.SelectMany(x => x.TextChannels).Where(x => x.Name == channelName))
+            {
+                await channel.SendMessageAsync(text);
+            }
+        }
+
+        public static IReadOnlyCollection<string> GetChannels()
+        {
+            return _client.Guilds.SelectMany(x => x.TextChannels).Select(x => x.Name).ToList();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
